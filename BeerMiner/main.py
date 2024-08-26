@@ -98,20 +98,43 @@ def get_beer_list_atlas(protocol, server, url) -> list:
             update_object = Beer(db_beer[1])
             if db_beer[2] == "N/A" or db_beer[2] == None:
                 update_object.set('style', beer_style)
+            else:
+                update_object.set('style', db_beer[2])
+
             if db_beer[3] == "N/A" or db_beer[3] == None:
                 update_object.set('abv', beer_abv)
+            else:
+                update_object.set('abv', db_beer[3])
+
             if db_beer[4] == "N/A" or db_beer[4] == None:
                 update_object.set('epm', beer_epm)
+            else:
+                update_object.set('epm', db_beer[4])
+
             if db_beer[6] == "N/A" or db_beer[6] == None:
                 update_object.set('brewery', beer_brewery)
+            else:
+                update_object.set('brewery', db_beer[6])
+
             if db_beer[7] == "N/A" or db_beer[7] == None:
                 update_object.set('location', beer_location)
+            else:
+                update_object.set('location', db_beer[7])
+
             if db_beer[8] == "N/A" or db_beer[8] == None:  
                 update_object.set('description', beer_description)
+            else:
+                update_object.set('description', db_beer[8])
+
             if db_beer[9] == "N/A" or db_beer[9] == None:
                 update_object.set('url', beer_url)
+            else:
+                update_object.set('url', db_beer[9])
+
             if db_beer[10] == "N/A" or db_beer[10] == None:
                 update_object.set('rating', beer_rating)
+            else:
+                update_object.set('rating', db_beer[10])
 
             database.update(db_beer_id, update_object)
 
@@ -238,20 +261,43 @@ def get_beer_list_pivnici(protocol, server, url) -> list:
                     update_object = Beer(db_beer[1])
                     if db_beer[2] == "N/A" or db_beer[2] == None:
                         update_object.set('style', beer_style)
+                    else:
+                        update_object.set('style', db_beer[2])
+
                     if db_beer[3] == "N/A" or db_beer[3] == None:
                         update_object.set('abv', beer_abv)
+                    else:
+                        update_object.set('abv', db_beer[3])
+
                     if db_beer[4] == "N/A" or db_beer[4] == None:
                         update_object.set('epm', beer_epm)
+                    else:
+                        update_object.set('epm', db_beer[4])
+                        
                     if db_beer[6] == "N/A" or db_beer[6] == None:
                         update_object.set('brewery', beer_brewery_name)
+                    else:
+                        update_object.set('brewery', db_beer[6])
+
                     if db_beer[7] == "N/A" or db_beer[7] == None:
                         update_object.set('location', beer_location)
+                    else:
+                        update_object.set('location', db_beer[7])
+
                     if db_beer[8] == "N/A" or db_beer[8] == None:  
                         update_object.set('description', 'N/A')
+                    else:
+                        update_object.set('description', db_beer[8])
+
                     if db_beer[9] == "N/A" or db_beer[9] == None:
                         update_object.set('url', beer_url)
+                    else:
+                        update_object.set('url', db_beer[9])
+
                     if db_beer[10] == "N/A" or db_beer[10] == None:
                         update_object.set('rating', beer_rating)
+                    else:
+                        update_object.set('rating', db_beer[10])
 
                     database.update(db_beer_id, update_object)
 
