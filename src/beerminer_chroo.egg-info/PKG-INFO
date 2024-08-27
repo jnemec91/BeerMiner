@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: beerminer_chroo
+Version: 0.0.1
+Summary: A small example package
+Author-email: JNemec <j.nemecc91@gmail.com>
+Project-URL: Homepage, https://github.com/jnemec91/BeerMiner
+Project-URL: Issues, https://github.com/jnemec91/BeerMiner/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GPL-3.0 license
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+This is a simple python scraper to collect and merge data from two beer database sites.

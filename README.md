@@ -1,0 +1,1 @@
+This is a simple python scraper to collect and merge data from two beer database sites.
