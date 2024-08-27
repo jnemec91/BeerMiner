@@ -2,17 +2,17 @@ import bs4
 import requests
 import re
 
-from beer import Beer
-from database import Database
+from .beer import Beer
+from .database import Database
 
 # create database connection
 database = Database("beers.db")
 print(f"Database connection established to: {database}")
 
-def construct_url(protocol, server, url) -> str:
+def construct_url(protocol: str, server: str, url: str) -> str:
     return protocol+"://"+server+url
 
-def get_beer_list_atlas(protocol, server, url) -> list:
+def get_beer_list_atlas(protocol: str, server: str, url: str) -> list:
     print(f"Fetching beers from: {construct_url(protocol, server, url)}")
 
     response = requests.get(construct_url(protocol, server, url))
@@ -139,7 +139,7 @@ def get_beer_list_atlas(protocol, server, url) -> list:
 
     return database.fetch()
 
-def get_beer_list_pivnici(protocol, server, url) -> list:
+def get_beer_list_pivnici(protocol: str, server: str, url: str) -> list:
     print(f"Fetching beers from: {construct_url(protocol, server, url)}")
 
     resource = requests.get(construct_url(protocol, server, url))
