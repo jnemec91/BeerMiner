@@ -10,9 +10,6 @@ class Database:
     
     def __str__(self) -> str:
         return self.name
-
-    def __repr__(self) -> str:
-        return f"Database_{self.conn}"
     
     def __del__(self):
         self.conn.close()

@@ -18,7 +18,6 @@ def get_beer_list_atlas(protocol, server, url) -> list:
     response = requests.get(construct_url(protocol, server, url))
     response.encoding = response.apparent_encoding
     soup = bs4.BeautifulSoup(response.text, 'html.parser')
-    beer_list = []
 
     all_rows = soup.find_all('tr')
     progress = 0
@@ -138,10 +137,7 @@ def get_beer_list_atlas(protocol, server, url) -> list:
 
             database.update(db_beer_id, update_object)
 
-        # add to list
-        beer_list.append(beer)
-
-    return beer_list
+    return database.fetch()
 
 def get_beer_list_pivnici(protocol, server, url) -> list:
     print(f"Fetching beers from: {construct_url(protocol, server, url)}")
@@ -149,7 +145,6 @@ def get_beer_list_pivnici(protocol, server, url) -> list:
     resource = requests.get(construct_url(protocol, server, url))
     resource.encoding = resource.apparent_encoding
     soup = bs4.BeautifulSoup(resource.text, 'html.parser')
-    beer_list = []
 
     # check if there is a pagination
     pagination = soup.find('div', class_='paging controls')
@@ -195,7 +190,10 @@ def get_beer_list_pivnici(protocol, server, url) -> list:
                 details = beer_soup.find('div', class_='itemDetails first')
 
                 # get beer rating
-                beer_rating = details.find('div', class_='rating').find('span', class_="min").text.strip().replace(',', '.')
+                try:
+                    beer_rating = details.find('div', class_='rating').find('span', class_="min").text.strip().replace(',', '.')
+                except AttributeError:
+                    beer_rating = "N/A"
 
                 # get beer style
                 try:
@@ -304,7 +302,12 @@ def get_beer_list_pivnici(protocol, server, url) -> list:
         except Exception as e:  
             print(e)
             raise
+        
+    return database.fetch()
 
-beers_atlas = get_beer_list_atlas("http","www.atlaspiv.cz/","?page=hodnoceni")
-beers_pivnici = get_beer_list_pivnici("https","www.pivnici.cz/","seznam/piva/dle-alkoholu/")
+
+
+if __name__ == "__main__":    
+    get_beer_list_atlas("http","www.atlaspiv.cz/","?page=hodnoceni")
+    get_beer_list_pivnici("https","www.pivnici.cz/","seznam/piva/dle-alkoholu/")
 
